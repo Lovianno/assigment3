@@ -21,7 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Route::group(['middleware' => 'auth:api'], function(){
-    
+    Route::get('/todo', [TodoController::class, 'showTodo']);
+    Route::post('/todo', [TodoController::class, 'createTodo']);
+    Route::put('/todo', [TodoController::class, 'updateTodo']);
+    Route::delete('/todo', [TodoController::class, 'deleteTodo']);
 // });
 
 
@@ -35,9 +38,5 @@ Route::group([
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/data', [AuthController::class, 'data']);
         Route::post('/refresh', [AuthController::class, 'refresh']);
-        Route::get('/todo', [TodoController::class, 'showTodo']);
-         Route::post('/todo', [TodoController::class, 'createTodo']);
-         Route::put('/todo', [TodoController::class, 'updateTodo']);
-         Route::delete('/todo', [TodoController::class, 'deleteTodo']);
     });
 });
