@@ -20,23 +20,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/todo', [TodoController::class, 'showTodo']);
-    Route::post('/todo', [TodoController::class, 'createTodo']);
-    Route::put('/todo', [TodoController::class, 'updateTodo']);
-    Route::delete('/todo', [TodoController::class, 'deleteTodo']);
-// });
+        Route::post('/todo', [TodoController::class, 'createTodo']);
+        Route::put('/todo', [TodoController::class, 'updateTodo']);
+        Route::delete('/todo', [TodoController::class, 'deleteTodo']);
+});
 
 
-Route::group([
-    'prefix' => 'auth'
-], function(){
+Route::group(['prefix' => 'auth'], function(){
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
+    Route::get('login', [AuthController::class, 'login'])->name('login');
 
     Route::group(['middleware' => 'auth:api'], function(){
+        
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/data', [AuthController::class, 'data']);
         Route::post('/refresh', [AuthController::class, 'refresh']);
+      
     });
 });

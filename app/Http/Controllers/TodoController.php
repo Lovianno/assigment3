@@ -24,7 +24,7 @@ class TodoController extends Controller
         ]);
         
         return $this->TodoService->addTodo($validatedData);
-
+        
     }
     public function updateTodo(Request $request){
         $validatedData = $request->validate([

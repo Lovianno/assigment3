@@ -28,7 +28,6 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
-
     }
     public function logout(){
         auth()->logout();
@@ -58,6 +57,7 @@ public function register(Request $request){
         'email' => $user->email,
         'password' => $request->password
      ]);
+     
          if(!$token){
             return response()->json(['error' => 'Unauthorized'], 401);
          }
